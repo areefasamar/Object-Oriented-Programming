@@ -51,7 +51,7 @@ class Book{
 			}
 		}
 		
-		int gettotalbooks() const{
+		static const int gettotalbooks(){
 			return total_books;
 		}
 		
@@ -68,12 +68,13 @@ class Member{
 	private:
 		int memberid;
 		string name;
-		const int maxbooksallowed;
 		static int total_members;
 		vector<int> borrowedBookIDs;
 		
 	public:
-	     Member(int id, string n): maxbooksallowed(3) {
+		static const int maxbooksallowed;
+		
+	     Member(int id, string n){
 	     	memberid = id;
 	     	name = n;
 	     	total_members++;
@@ -97,10 +98,6 @@ class Member{
    
         int getBorrowedCount() const{ 
 		    return borrowedBookIDs.size(); 
-		}
-		
-        int getMaxBooksAllowed() const{ 
-		    return maxbooksallowed;
 		}
 		
 };
@@ -161,7 +158,7 @@ class Library{
                     return false;
              }
 
-            if (memberPtr->getBorrowedCount() >= memberPtr->getMaxBooksAllowed()){
+            if (memberPtr->getBorrowedCount() >= Member::maxbooksallowed){
                     cout << "Member has reached maximum allowed books!" << endl;
                     return false;
             }
@@ -174,6 +171,7 @@ class Library{
 };
 	int Book::total_books = 0;
 	int Member::total_members = 0;
+	const int Member::maxbooksallowed = 3;
 	
 int main(){
     Library lib;
