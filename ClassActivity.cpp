@@ -51,7 +51,7 @@ class Book{
 			}
 		}
 		
-		static const int gettotalbooks(){
+		static int gettotalbooks(){
 			return total_books;
 		}
 		
